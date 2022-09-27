@@ -1,0 +1,31 @@
+{
+  "name": "addressservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "AddressRestController.js",
+  "scripts": {
+    "test": "jest --verbose",
+    "test-watch": "jest --verbose --watchAll",
+    "start": "npx tsc && node dist/test.js",
+    "dev": "concurrently -n \"TS, Node\" \"npx tsc --watch\" \"nodemon dist/Address/AddressRestController.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/eureka-js-client": "^4.5.5",
+    "@types/express": "^4.17.14",
+    "@types/mongoose": "^5.11.97",
+    "eureka-js-client": "^4.5.0",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.2",
+    "tsconfig.json": "^1.0.11"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.23",
+    "concurrently": "^7.4.0",
+    "jest": "^29.0.3",
+    "nodemon": "^2.0.20",
+    "typescript": "^4.8.3"
+  }
+}
