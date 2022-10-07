@@ -14,6 +14,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
@@ -22,15 +24,32 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CustomerServicesImpl implements CustomerServices {
 
-    CustomerRepository customerRepository;
-    CustomerMapper customerMapper;
-    AddressRestClient addressRestClient;
-    ShoppingCartRestClient shoppingCartRestClient;
+    private CustomerRepository customerRepository;
+    private CustomerMapper customerMapper;
+    private AddressRestClient addressRestClient;
+    private ShoppingCartRestClient shoppingCartRestClient;
 
     @Override
     public boolean addCustomer(CustomerDTO customerDTO) {
         Customer customer1 = customerMapper.fromCustomerDTO(customerDTO);
+        customer1.setAddressIds(new ArrayList<String>());
+        customer1.setId(UUID.randomUUID().toString());
         customerRepository.save(customer1);
+        return true;
+    }
+
+    @Override
+    public boolean updateCustomer(String customerId, CustomerDTO customerDTO) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+        if (customer == null){
+            throw new CustomerNotFoundException("Customer not found !!");
+        }
+        customer.setFirstname(customerDTO.getFirstname());
+        customer.setLastname(customerDTO.getLastname());
+        customer.setPhone(customerDTO.getPhone());
+        customerRepository.save(customer);
+        changeEmail(customerId, customerDTO.getEmail());
+        changePassword(customerId, customerDTO.getPassword());
         return true;
     }
 
@@ -41,14 +60,14 @@ public class CustomerServicesImpl implements CustomerServices {
             throw new CustomerNotFoundException("Customer not found !!");
         }
         int size = customer.getAddressIds().size();
-        if (size >= 2){
+        if (size > 2){
             throw new CustomerAddressException("You have three address, it's enough");
         }
-        address.setId(UUID.randomUUID().toString());
-        customer.getAddressIds().add(address.getId());
-        customerRepository.save(customer);
+        address.set_id(UUID.randomUUID().toString());
         /* Il faut envoyer une requete avec post vers le service address*/
         addressRestClient.saveAddressFromService(address);
+        customer.getAddressIds().add(address.get_id());
+        customerRepository.save(customer);
         return true;
     }
 
@@ -59,7 +78,7 @@ public class CustomerServicesImpl implements CustomerServices {
             throw new CustomerNotFoundException("Customer not found !!");
         }
         /* Il faut envoyer une requete avec put vers le service address*/
-        addressRestClient.updateAddressFromService(address.getId(), address);
+        addressRestClient.updateAddressFromService(address.get_id(), address);
         return true;
     }
 
@@ -72,10 +91,10 @@ public class CustomerServicesImpl implements CustomerServices {
         if (customer.getAddressIds() == null){
             throw new CustomerAddressException("your list of address is empty");
         }
-        customer.getAddressIds().remove(addressId);
-        customerRepository.save(customer);
         /* Il faut envoyer une requete avec delete vers le service address*/
         addressRestClient.deleteAddressFromService(addressId);
+        customer.getAddressIds().remove(addressId);
+        customerRepository.save(customer);
         return true;
     }
 
@@ -132,7 +151,7 @@ public class CustomerServicesImpl implements CustomerServices {
             customer.getShoppingCart().getItems().remove(item);
             customerRepository.save(customer);
             /* Il faut envoyer une requete avec delete vers le service shoppingCart*/
-            shoppingCartRestClient.deleteItemFromShoppingCart(customer.getShoppingCart().getId(), item);
+            shoppingCartRestClient.deleteItemFromShoppingCart(customer.getShoppingCart().getId(), item.getId());
         }
         return true;
     }
@@ -149,6 +168,7 @@ public class CustomerServicesImpl implements CustomerServices {
         }
         Order order = new Order(UUID.randomUUID().toString(), new Date(), sum);
         customer.getShoppingCart().setPurchase(order);
+        customerRepository.save(customer);
         shoppingCartRestClient.setPurchare(customer.getShoppingCart().getId(), order);
     }
 

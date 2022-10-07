@@ -7,17 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Collection;
 
-@Entity
+@Document
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
 public class Customer {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String firstname;
     private String lastname;

@@ -7,6 +7,7 @@ import com.example.customerservice.Item.Item;
 
 public interface CustomerServices {
     boolean addCustomer(CustomerDTO customerDTO);
+    boolean updateCustomer(String customerId, CustomerDTO customerDTO);
     boolean addAddress(String customerId, Address address);
     boolean updateAddress(String customerId, Address address);
     boolean deleteAddress(String customerId, String addressId);

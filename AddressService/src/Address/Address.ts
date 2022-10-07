@@ -2,12 +2,13 @@ import mongoose from "mongoose";
 import {AddressState} from "../Enums/AddressState";
 
 let addressSchema = new mongoose.Schema({
+    _id:String,
     street:String,
-    streetNumber:{type: String, required: true },
-    zipCode:{type: Number, required: true },
+    streetNumber:{type: Number},
+    zipCode:{type: Number},
     city:{type: String, required: true },
     country:{type: String, required: true, },
-    phone:{type: String, required: true, },
+    homePhone:{type: String, required: true, },
     type:{type: String, enum: AddressState, required: true}
 });
 
