@@ -62,3 +62,13 @@ C:\Users\ie\Desktop\Online-shop\OrderService\obj\Debug\net6.0\refint\OrderServic
 C:\Users\ie\Desktop\Online-shop\OrderService\obj\Debug\net6.0\OrderService.pdb
 C:\Users\ie\Desktop\Online-shop\OrderService\obj\Debug\net6.0\OrderService.genruntimeconfig.cache
 C:\Users\ie\Desktop\Online-shop\OrderService\obj\Debug\net6.0\ref\OrderService.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Common.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Common.Abstractions.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Common.Http.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Connector.Abstractions.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Connector.ConnectorBase.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Discovery.Abstractions.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Discovery.ClientBase.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Discovery.Eureka.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Extensions.Configuration.Abstractions.dll
+C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll

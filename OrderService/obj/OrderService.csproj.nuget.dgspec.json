@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ie\\Desktop\\Online-shop\\OrderService\\OrderService.csproj": {}
+    "C:\\Users\\ie\\Desktop\\Online-Shop\\OrderService\\OrderService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ie\\Desktop\\Online-shop\\OrderService\\OrderService.csproj": {
+    "C:\\Users\\ie\\Desktop\\Online-Shop\\OrderService\\OrderService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ie\\Desktop\\Online-shop\\OrderService\\OrderService.csproj",
+        "projectUniqueName": "C:\\Users\\ie\\Desktop\\Online-Shop\\OrderService\\OrderService.csproj",
         "projectName": "OrderService",
-        "projectPath": "C:\\Users\\ie\\Desktop\\Online-shop\\OrderService\\OrderService.csproj",
+        "projectPath": "C:\\Users\\ie\\Desktop\\Online-Shop\\OrderService\\OrderService.csproj",
         "packagesPath": "C:\\Users\\ie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ie\\Desktop\\Online-shop\\OrderService\\obj\\",
+        "outputPath": "C:\\Users\\ie\\Desktop\\Online-Shop\\OrderService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ie\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -59,6 +59,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.9, )"
+            },
+            "Steeltoe.Discovery.Eureka": {
+              "target": "Package",
+              "version": "[3.2.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
