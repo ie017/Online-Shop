@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dAoStmpQXxo4GK5r7nLeUTnqtnkN47xC34EvpkoKpxaBb8BCnbPZgsrTt2xC/eARxsxytPcUnWBHja4p0hMXgw==",
+  "dgSpecHash": "eeY/KCvuambrWpcZbEX06qvoOmtqP8cJvLOw9TJxKlKWbkISjWSDp66i7Lnt90m6jmUe6pK8m/ufRJ0QBCZuGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ie\\Desktop\\Online-shop\\ShoppingCartService\\ShoppingCartService.csproj",
+  "projectFilePath": "C:\\Users\\ie\\Desktop\\Online-Shop\\ShoppingCartService\\ShoppingCartService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ie\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\ie\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

@@ -21,5 +21,5 @@ public class Customer {
     private String password;
     private CustomerStatus customerStatus;
     private Collection<String> addressIds;
-    private ShoppingCart shoppingCart;
+    private String shoppingCartId;
 }

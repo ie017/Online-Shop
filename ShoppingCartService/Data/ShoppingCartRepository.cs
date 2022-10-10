@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using ShoppingCartService.Exceptions;
 using ShoppingCartService.Models;
 
@@ -29,7 +30,7 @@ namespace ShoppingCartService.Data{
 
         public ShoppingCart GetShoppingCart(string ShoppingCartId)
         {
-           return _ShoppingCartContext.shoppingCarts.FirstOrDefault(ShoppingCart => ShoppingCart.id == ShoppingCartId)!;
+           return _ShoppingCartContext.shoppingCarts.FirstOrDefault(ShoppingCart => ShoppingCart.shoppingcartId == ShoppingCartId)!;
         }
 
         public Order SetPurchase(string ShoppingCartId, Order order)
@@ -57,6 +58,7 @@ namespace ShoppingCartService.Data{
                 Item item = findShoppingCart.items!.FirstOrDefault(item => item.id == itemId)!;
                 if(item != null){
                     findShoppingCart.items!.Remove(item);
+                    _ShoppingCartContext.items.Remove(item);
                     _ShoppingCartContext.shoppingCarts.Update(findShoppingCart);
                     SaveChange();
                     return true;
@@ -86,13 +88,25 @@ namespace ShoppingCartService.Data{
             ShoppingCart findShoppingCart = GetShoppingCart(ShoppingCartId);
             if(findShoppingCart != null){
                 if(item != null){
-                    findShoppingCart.items!.Add(item);
+                    findShoppingCart.items?.Add(item);
+                    _ShoppingCartContext.items.Add(item);
                     _ShoppingCartContext.shoppingCarts.Update(findShoppingCart);
                     SaveChange();
                     return true;
                 }else{
                     throw new ItemNullReferenceException("Your item doesn't exist");
                 }
+            }
+            else{
+                throw new ShoppingCartNotFound("Shopping Cart Not Found");
+            }
+        }
+
+        public IEnumerable<Item> GetAllItemsOfShoppingCart(string ShoppingCartId)
+        {
+            ShoppingCart findShoppingCart = GetShoppingCart(ShoppingCartId);
+            if(findShoppingCart != null){
+               return _ShoppingCartContext.items.Where(item => item.shoppingcartId == ShoppingCartId);
             }
             else{
                 throw new ShoppingCartNotFound("Shopping Cart Not Found");

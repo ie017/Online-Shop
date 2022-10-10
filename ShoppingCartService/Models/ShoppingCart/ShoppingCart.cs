@@ -1,13 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ShoppingCartService.Models{
-    [Table("ShoppingCart")]
+    [Table("ShoppingCarts")]
     public class ShoppingCart{
         [Key]
         [Required]
-        public string? id{get; set;}
-        public ICollection<Item>? items{get; set;}
+        public string? shoppingcartId{get; set;}
+        [JsonIgnore]
+        public virtual IList<Item>? items{get; set;}
         public Order? purchase{get; set;}
     }
 }

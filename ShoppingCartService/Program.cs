@@ -7,13 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<ShoppingCartContext>(
-    option => option.UseInMemoryDatabase("ShoppingCart")
+    option => option.UseSqlServer(builder.Configuration.GetConnectionString("Shopping-Cart"))
 );
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddServiceDiscovery(otpion => otpion.UseEureka());
+//builder.Services.AddServiceDiscovery(otpion => otpion.UseEureka());
 
 var app = builder.Build();
 
@@ -27,5 +29,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+// PreparationDb.PrepShoppingCart(app, true);
 
 app.Run();

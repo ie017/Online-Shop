@@ -7,6 +7,7 @@ namespace OrderService.Dtos{
         public string? OrderId{get; set;}
         public DateTime OrderDate{get; set;}
         public double sum{get; set;}
+        public string? customerId{get; set;}
         public string? billingId{get; set;}
         [ForeignKey("billingId")]
         public OrderStatus orderStatus{get; set;}

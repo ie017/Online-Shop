@@ -14,6 +14,7 @@ public interface CustomerServices {
     boolean changeEmail(String customerId, String email);
     boolean changePassword(String customerId, String password);
     void emptyCart(String customerId);
+    void deleteCart(String customerId);
     boolean updateCart(Item item, UpdateCartStatus cartStatus, String customerId);
     void purchase(String customerId);
     void updateStatus(String customerId, CustomerStatus status);

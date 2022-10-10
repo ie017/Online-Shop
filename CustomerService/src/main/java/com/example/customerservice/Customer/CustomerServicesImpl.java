@@ -8,6 +8,7 @@ import com.example.customerservice.Exceptions.CustomerAddressException;
 import com.example.customerservice.Exceptions.CustomerNotFoundException;
 import com.example.customerservice.Item.Item;
 import com.example.customerservice.Order.Order;
+import com.example.customerservice.Order.OrderRestClient;
 import com.example.customerservice.ShoppingCart.ShoppingCart;
 import com.example.customerservice.ShoppingCart.ShoppingCartRestClient;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ public class CustomerServicesImpl implements CustomerServices {
     private CustomerMapper customerMapper;
     private AddressRestClient addressRestClient;
     private ShoppingCartRestClient shoppingCartRestClient;
+    private OrderRestClient orderRestClient;
 
     @Override
     public boolean addCustomer(CustomerDTO customerDTO) {
@@ -130,9 +132,20 @@ public class CustomerServicesImpl implements CustomerServices {
         shoppingCart.setId(UUID.randomUUID().toString());
         shoppingCart.setItems(null);
         shoppingCart.setPurchase(null);
-        customer.setShoppingCart(shoppingCart);
+        customer.setShoppingCartId(shoppingCart.getId());
         /* Il faut envoyer une requete avec post vers le service shoppingCart*/
         shoppingCartRestClient.saveShoppingCart(shoppingCart);
+        customerRepository.save(customer);
+    }
+
+    @Override
+    public void deleteCart(String customerId) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+        if (customer == null){
+            throw new CustomerNotFoundException("Customer not found !!");
+        }
+        shoppingCartRestClient.deleteShoppingCart(customer.getShoppingCartId());
+        customer.setShoppingCartId(null);
         customerRepository.save(customer);
     }
 
@@ -143,15 +156,11 @@ public class CustomerServicesImpl implements CustomerServices {
             throw new CustomerNotFoundException("Customer not found !!");
         }
         if (cartStatus == UpdateCartStatus.ADD){
-            customer.getShoppingCart().getItems().add(item);
-            customerRepository.save(customer);
             /* Il faut envoyer une requete avec put vers le service shoppingCart*/
-            shoppingCartRestClient.addItemToShoppingCart(customer.getShoppingCart().getId(), item);
+            shoppingCartRestClient.addItemToShoppingCart(customer.getShoppingCartId(), item);
         } else {
-            customer.getShoppingCart().getItems().remove(item);
-            customerRepository.save(customer);
             /* Il faut envoyer une requete avec delete vers le service shoppingCart*/
-            shoppingCartRestClient.deleteItemFromShoppingCart(customer.getShoppingCart().getId(), item.getId());
+            shoppingCartRestClient.deleteItemFromShoppingCart(customer.getShoppingCartId(), item.getId());
         }
         return true;
     }
@@ -162,14 +171,14 @@ public class CustomerServicesImpl implements CustomerServices {
         if (customer == null){
             throw new CustomerNotFoundException("Customer not found !!");
         }
+        ShoppingCart shoppingCart = shoppingCartRestClient.getshoppingcart(customer.getShoppingCartId());
         double sum = 0.0;
-        for (Item item : customer.getShoppingCart().getItems()) {
+        for (Item item : shoppingCart.getItems()) {
             sum = item.getPrice() + sum;
         }
-        Order order = new Order(UUID.randomUUID().toString(), new Date(), sum);
-        customer.getShoppingCart().setPurchase(order);
-        customerRepository.save(customer);
-        shoppingCartRestClient.setPurchare(customer.getShoppingCart().getId(), order);
+        Order order = new Order(UUID.randomUUID().toString(), new Date(), sum, customer.getId());
+        shoppingCartRestClient.setPurchare(customer.getShoppingCartId(), order);
+        orderRestClient.setOrder(order);
     }
 
     @Override

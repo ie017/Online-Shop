@@ -12,6 +12,7 @@ namespace OrderService.Models.Order{
         public DateTime OrderDate{get; set;}
         [Required]
         public double sum{get; set;}
+        public string? customerId{get; set;}
         public string? billingId{get; set;}
         [ForeignKey("billingId")]
         public OrderStatus orderStatus{get; set;}

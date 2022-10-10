@@ -6,7 +6,8 @@ import lombok.Data;
 import java.util.Date;
 @Data @AllArgsConstructor
 public class Order {
-    private String id;
-    private Date dateCreation;
+    private String OrderId;
+    private Date OrderDate;
     private double sum;
+    private String customerId;
 }
