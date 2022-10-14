@@ -11,6 +11,9 @@ namespace OrderService.Data{
         }
         private static void SeedData(OrderContext context, bool isProd)
         {
+            Console.WriteLine("--> Migrate...");
+
+            context.Database.Migrate();
             if(!context.orders.Any())
             {
                 Console.WriteLine("--> Seeding Data...");

@@ -15,10 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -129,10 +126,10 @@ public class CustomerServicesImpl implements CustomerServices {
             throw new CustomerNotFoundException("Customer not found !!");
         }
         ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.setId(UUID.randomUUID().toString());
-        shoppingCart.setItems(null);
-        shoppingCart.setPurchase(null);
-        customer.setShoppingCartId(shoppingCart.getId());
+        shoppingCart.setShoppingcartId(UUID.randomUUID().toString());
+        shoppingCart.setItems(new ArrayList<Item>());
+        shoppingCart.setPurchaseId(null);
+        customer.setShoppingCartId(shoppingCart.getShoppingcartId());
         /* Il faut envoyer une requete avec post vers le service shoppingCart*/
         shoppingCartRestClient.saveShoppingCart(shoppingCart);
         customerRepository.save(customer);
@@ -158,9 +155,11 @@ public class CustomerServicesImpl implements CustomerServices {
         if (cartStatus == UpdateCartStatus.ADD){
             /* Il faut envoyer une requete avec put vers le service shoppingCart*/
             shoppingCartRestClient.addItemToShoppingCart(customer.getShoppingCartId(), item);
-        } else {
+        } else if(cartStatus == UpdateCartStatus.DELETE){
             /* Il faut envoyer une requete avec delete vers le service shoppingCart*/
             shoppingCartRestClient.deleteItemFromShoppingCart(customer.getShoppingCartId(), item.getId());
+        } else{
+            shoppingCartRestClient.updateItemFromShoppingCart(customer.getShoppingCartId(), item);
         }
         return true;
     }
@@ -171,9 +170,9 @@ public class CustomerServicesImpl implements CustomerServices {
         if (customer == null){
             throw new CustomerNotFoundException("Customer not found !!");
         }
-        ShoppingCart shoppingCart = shoppingCartRestClient.getshoppingcart(customer.getShoppingCartId());
+        List<Item> items = shoppingCartRestClient.getAllItems(customer.getShoppingCartId());
         double sum = 0.0;
-        for (Item item : shoppingCart.getItems()) {
+        for (Item item : items) {
             sum = item.getPrice() + sum;
         }
         Order order = new Order(UUID.randomUUID().toString(), new Date(), sum, customer.getId());
@@ -189,5 +188,15 @@ public class CustomerServicesImpl implements CustomerServices {
         }
         customer.setCustomerStatus(status);
         customerRepository.save(customer);
+    }
+
+    @Override
+    public void deletePurchase(String customerId) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+        if (customer == null){
+            throw new CustomerNotFoundException("Customer not found !!");
+        }
+        orderRestClient.deleteOrder(shoppingCartRestClient.getPurchase(customer.getShoppingCartId()));
+        shoppingCartRestClient.deletePurchase(customer.getShoppingCartId());
     }
 }

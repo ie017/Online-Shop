@@ -72,3 +72,12 @@ C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Discovery
 C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Discovery.Eureka.dll
 C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\Steeltoe.Extensions.Configuration.Abstractions.dll
 C:\Users\ie\Desktop\Online-shop\OrderService\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll
+C:\Users\ie\Desktop\Online-Shop\OrderService\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\ie\Desktop\Online-Shop\OrderService\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+C:\Users\ie\Desktop\Online-Shop\OrderService\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\Users\ie\Desktop\Online-Shop\OrderService\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+C:\Users\ie\Desktop\Online-Shop\OrderService\bin\Debug\net6.0\MySql.Data.dll
+C:\Users\ie\Desktop\Online-Shop\OrderService\bin\Debug\net6.0\Ubiety.Dns.Core.dll
+C:\Users\ie\Desktop\Online-Shop\OrderService\bin\Debug\net6.0\ZstdNet.dll
+C:\Users\ie\Desktop\Online-Shop\OrderService\bin\Debug\net6.0\MySql.EntityFrameworkCore.dll
+C:\Users\ie\Desktop\Online-Shop\OrderService\bin\Debug\net6.0\BouncyCastle.Crypto.dll

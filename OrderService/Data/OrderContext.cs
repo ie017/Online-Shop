@@ -10,5 +10,6 @@ namespace OrderService.Data{
         public OrderContext(DbContextOptions<OrderContext> options) : base(options){
 
         }
+
     }
 }

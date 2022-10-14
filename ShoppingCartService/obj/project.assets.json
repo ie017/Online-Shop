@@ -3626,11 +3626,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ie\\Desktop\\Online-shop\\ShoppingCartService\\ShoppingCartService.csproj",
+      "projectUniqueName": "C:\\Users\\ie\\Desktop\\Online-Shop\\ShoppingCartService\\ShoppingCartService.csproj",
       "projectName": "ShoppingCartService",
-      "projectPath": "C:\\Users\\ie\\Desktop\\Online-shop\\ShoppingCartService\\ShoppingCartService.csproj",
+      "projectPath": "C:\\Users\\ie\\Desktop\\Online-Shop\\ShoppingCartService\\ShoppingCartService.csproj",
       "packagesPath": "C:\\Users\\ie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ie\\Desktop\\Online-shop\\ShoppingCartService\\obj\\",
+      "outputPath": "C:\\Users\\ie\\Desktop\\Online-Shop\\ShoppingCartService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ie\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3707,7 +3707,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

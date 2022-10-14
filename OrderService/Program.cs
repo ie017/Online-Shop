@@ -6,7 +6,7 @@ using Steeltoe.Discovery.Eureka;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<OrderContext>(
-    options => options.UseInMemoryDatabase("Orders")
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("Orders"))
 );
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddControllers();

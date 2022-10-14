@@ -10,6 +10,6 @@ namespace ShoppingCartService.Models{
         public string? shoppingcartId{get; set;}
         [JsonIgnore]
         public virtual IList<Item>? items{get; set;}
-        public Order? purchase{get; set;}
+        public string? purchaseId{get; set;}
     }
 }

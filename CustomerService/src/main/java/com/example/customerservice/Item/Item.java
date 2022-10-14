@@ -6,7 +6,8 @@ import lombok.Data;
 @Data
 public class Item {
     private String id;
-    private Product product;
+    private String shoppingcartId;
+    private String productId;
     private int quantity;
     private double price;
 }

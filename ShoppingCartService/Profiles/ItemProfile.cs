@@ -6,6 +6,7 @@ namespace ShoppingCartService.Profiles{
     public class ItemProfile : Profile{
         public ItemProfile(){
             CreateMap<ItemCreateDto, Item>();
+            CreateMap<ItemUpdateDto, Item>();
         }
     }
 }

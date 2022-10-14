@@ -25,7 +25,6 @@ namespace OrderService.Data{
             if(order == null){
                 throw new ArgumentNullException(nameof(order));
             }
-            order.OrderId = Guid.NewGuid().ToString();
             order.orderStatus = Enums.OrderStatus.New;
             _orderContext.orders.Add(order);
         }

@@ -7,9 +7,12 @@ namespace ShoppingCartService.Data{
         IEnumerable<ShoppingCart> GetAllShoppingCart();
         ShoppingCart GetShoppingCart(string ShoppingCartId);
         bool DeleteShoppingCart(string ShoppingCartId);
-        bool Update(string ShoppingCartId, Item item);
-        bool Remove(string ShoppingCartId, string itemId);
-        Order SetPurchase(string ShoppingCartId, Order order);
-        bool SaveChange();
+        bool AddItem(string ShoppingCartId, Item item);
+        bool UpdateItem(string ShoppingCartId, Item item);
+        bool RemoveItem(string ShoppingCartId, string itemId);
+        void SetPurchase(string ShoppingCartId, Order order);
+        void DeletePurchase(string ShoppingCartId);
+        string GetPurchase(string ShoppingCartId);
+        void SaveChange();
     }
 }

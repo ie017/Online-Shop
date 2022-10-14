@@ -18,5 +18,5 @@ public interface CustomerServices {
     boolean updateCart(Item item, UpdateCartStatus cartStatus, String customerId);
     void purchase(String customerId);
     void updateStatus(String customerId, CustomerStatus status);
-
+    void deletePurchase(String id);
 }

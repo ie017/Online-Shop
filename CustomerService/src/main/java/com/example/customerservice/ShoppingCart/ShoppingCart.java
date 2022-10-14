@@ -7,7 +7,7 @@ import java.util.Collection;
 
 @Data
 public class ShoppingCart {
-    private String id;
+    private String shoppingcartId;
     private Collection<Item> items;
-    private Order purchase;
+    private String purchaseId;
 }

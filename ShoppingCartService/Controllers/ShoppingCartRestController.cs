@@ -56,30 +56,40 @@ namespace ShoppingCartService.Controllers{
             return NoContent();
         }
 
-        [HttpPut("{id}/addItem")]
+        [HttpPost("{id}/items")]
         public ActionResult<Item> AddItemToShoppingCart(string id, [FromBody] ItemCreateDto itemCreateDto){
             var shoppingcart = _repository.GetShoppingCart(id);
             if(shoppingcart != null){
                 var item = _mapper.Map<Item>(itemCreateDto);
                 item.shoppingcartId = id;
                 item.ShoppingCart = shoppingcart;
-                _repository.Update(id, item);
+                _repository.AddItem(id, item);
                 return Ok(item);
             }
             return NotFound();
         }
 
-        [HttpPut("{id}/deleteItem/{ItemId}")]
+        [HttpDelete("{id}/items/{ItemId}")]
         public ActionResult<ShoppingCartReadDto> DeleteItemFromShoppingCart(string id, string ItemId){
             var shoppingcart = _repository.GetShoppingCart(id);
             if(shoppingcart != null){
-                _repository.Remove(id, ItemId);
+                _repository.RemoveItem(id, ItemId);
                 return Ok(_mapper.Map<ShoppingCartReadDto>(_repository.GetShoppingCart(id)));
             }
             return NotFound();
         }
 
-        [HttpPut("{id}/setpurchares")]
+        [HttpPut("{id}/items/{ItemId}")]
+        public ActionResult<ShoppingCartReadDto> UpdateItemFromShoppingCart(string id, Item itemUpdate){
+            var shoppingcart = _repository.GetShoppingCart(id);
+            if(shoppingcart != null){
+                _repository.UpdateItem(id, itemUpdate);
+                return Ok(_mapper.Map<ShoppingCartReadDto>(_repository.GetShoppingCart(id)));
+            }
+            return NotFound();
+        }
+
+        [HttpPut("{id}/purchares")]
         public ActionResult<ShoppingCartReadDto> SetPurchare(string id, [FromBody] Order order){
             var shoppingcart = _repository.GetShoppingCart(id);
             if(shoppingcart != null){
@@ -87,6 +97,20 @@ namespace ShoppingCartService.Controllers{
                 return Ok(_mapper.Map<ShoppingCartReadDto>(_repository.GetShoppingCart(id)));
             }
             return NotFound();
+        }
+        [HttpDelete("{id}/purchares")]
+        public ActionResult<ShoppingCartReadDto> deletePurchare(string id){
+            var shoppingcart = _repository.GetShoppingCart(id);
+            if(shoppingcart != null){
+                _repository.DeletePurchase(id);
+                return Ok(_mapper.Map<ShoppingCartReadDto>(_repository.GetShoppingCart(id)));
+            }
+            return NotFound();
+        }
+
+        [HttpGet("{id}/purchares")]
+        public string getPurchare(string id){
+                return _repository.GetPurchase(id);
         }
     }
 }

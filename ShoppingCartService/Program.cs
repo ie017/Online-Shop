@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddServiceDiscovery(otpion => otpion.UseEureka());
+builder.Services.AddServiceDiscovery(otpion => otpion.UseEureka());
 
 var app = builder.Build();
 
@@ -30,6 +30,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// PreparationDb.PrepShoppingCart(app, true);
+PreparationDb.PrepShoppingCart(app, true);
 
 app.Run();

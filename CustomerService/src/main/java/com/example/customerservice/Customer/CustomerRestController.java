@@ -50,6 +50,10 @@ public class CustomerRestController {
     public void addPurchase(@PathVariable(name = "id") String id){
         customerServices.purchase(id);
     }
+    @DeleteMapping(path = "/customer/{id}/purchase")
+    public void deletePurchase(@PathVariable(name = "id") String id){
+        customerServices.deletePurchase(id);
+    }
     @PutMapping(path = "/customer/{id}/status")
     public void updateStatus(@PathVariable(name = "id") String id, @RequestBody CustomerStatus customerStatus){
         customerServices.updateStatus(id,customerStatus);

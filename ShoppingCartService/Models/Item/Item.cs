@@ -9,7 +9,7 @@ namespace ShoppingCartService.Models{
         public string? shoppingcartId{get; set;}
         [ForeignKey("shoppingcartId")]
         public virtual ShoppingCart? ShoppingCart{get; set;}
-        public Product? product{get; set;}
+        public string? productId{get; set;}
         public int quantity{get; set;}
         public double price{get; set;}
     }

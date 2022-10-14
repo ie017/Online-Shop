@@ -1,0 +1,30 @@
+{
+  "name": "productservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ProductRestController.js",
+  "scripts": {
+    "start": "npx tsc && node dist/ProductRestController.js",
+    "dev": "concurrently -n \"TS, Node\" \"npx tsc --watch\" \"nodemon dist/Product/ProductRestController.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/eureka-js-client": "^4.5.5",
+    "@types/express": "^4.17.14",
+    "@types/mongoose": "^5.11.97",
+    "eureka-js-client": "^4.5.0",
+    "express": "^4.18.2",
+    "firebase": "^9.12.1",
+    "firebase-admin": "^11.1.0",
+    "mongoose": "^6.6.5",
+    "tsconfig.json": "^1.0.11"
+  },
+  "devDependencies": {
+    "@types/node": "^18.8.5",
+    "concurrently": "^7.4.0",
+    "nodemon": "^2.0.20",
+    "typescript": "^4.8.4"
+  }
+}
