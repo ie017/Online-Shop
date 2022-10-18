@@ -9,6 +9,8 @@ import com.example.customerservice.Exceptions.CustomerNotFoundException;
 import com.example.customerservice.Item.Item;
 import com.example.customerservice.Order.Order;
 import com.example.customerservice.Order.OrderRestClient;
+import com.example.customerservice.Product.Product;
+import com.example.customerservice.Product.ProductRestClient;
 import com.example.customerservice.ShoppingCart.ShoppingCart;
 import com.example.customerservice.ShoppingCart.ShoppingCartRestClient;
 import lombok.AllArgsConstructor;
@@ -27,6 +29,7 @@ public class CustomerServicesImpl implements CustomerServices {
     private AddressRestClient addressRestClient;
     private ShoppingCartRestClient shoppingCartRestClient;
     private OrderRestClient orderRestClient;
+    private ProductRestClient productRestClient;
 
     @Override
     public boolean addCustomer(CustomerDTO customerDTO) {

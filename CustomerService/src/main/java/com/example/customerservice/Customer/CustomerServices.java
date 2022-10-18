@@ -4,6 +4,10 @@ import com.example.customerservice.Address.Address;
 import com.example.customerservice.Enums.CustomerStatus;
 import com.example.customerservice.Enums.UpdateCartStatus;
 import com.example.customerservice.Item.Item;
+import com.example.customerservice.Product.Product;
+
+import javax.ws.rs.Produces;
+import java.util.List;
 
 public interface CustomerServices {
     boolean addCustomer(CustomerDTO customerDTO);
